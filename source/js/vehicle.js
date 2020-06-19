@@ -1,5 +1,5 @@
 function Vehicle(x, y, color) {
-  this.pos = createVector(random(width), random(height));// createVector(x, y);
+  this.pos = createVector(random(width), random(height)); // createVector(x, y);
   this.prevPos = [];
   this.target = createVector(x, y);
   this.vel = p5.Vector.random2D();
@@ -85,7 +85,7 @@ Vehicle.prototype.flee = function (target) {
     steer.limit(this.maxforce);
     return steer;
   } else {
-    return createVector(0,0);
+    return createVector(0, 0);
   }
 };
 
@@ -97,4 +97,8 @@ Vehicle.prototype.seek = function (target) {
   var steer = p5.Vector.sub(desired, this.vel);
   steer.limit(this.maxforce);
   return steer;
+};
+
+Vehicle.prototype.updateTarget = function (x, y) {
+  this.target = createVector(x, y);
 };

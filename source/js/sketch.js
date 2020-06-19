@@ -56,4 +56,8 @@ function windowResized() {
       : window.innerWidth * 0.9;
 
   resizeCanvas(can, can);
+
+  vehicles.forEach(function (v) {
+    v.updateTarget(width / 2, height / 2);
+  });
 }

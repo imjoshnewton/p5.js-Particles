@@ -9,7 +9,10 @@ function preload() {
 }
 
 function setup() {
-  var can = window.innerHeight * 0.8;
+  var can =
+    window.innerHeight < window.innerWidth
+      ? window.innerHeight * 0.8
+      : window.innerWidth * 0.9;
   var canvas = createCanvas(can, can);
   canvas.parent("sketch-div");
   background(255);
@@ -44,4 +47,13 @@ function draw() {
   });
 
   console.log("fps: " + frameRate());
+}
+
+function windowResized() {
+  var can =
+    window.innerHeight < window.innerWidth
+      ? window.innerHeight * 0.8
+      : window.innerWidth * 0.9;
+
+  resizeCanvas(can, can);
 }

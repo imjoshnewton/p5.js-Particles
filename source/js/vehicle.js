@@ -1,8 +1,10 @@
-function Vehicle(x, y) {
+function Vehicle(x, y, color) {
   this.pos = createVector(random(width), random(height));// createVector(x, y);
+  this.prevPos = [];
   this.target = createVector(x, y);
   this.vel = p5.Vector.random2D();
   this.acc = createVector();
+  this.color = color;
   this.r = 8;
   this.maxspeed = 5;
   this.maxforce = 0.3;
@@ -30,20 +32,33 @@ Vehicle.prototype.applyForce = function (f) {
 };
 
 Vehicle.prototype.update = function () {
+  //this.prevPos.push(this.pos);
   this.pos.add(this.vel);
   this.vel.add(this.acc);
   this.acc.mult(0);
+  //if(this.prevPos.length > 9600) this.prevPos.splice(0, 1);
 };
 
 Vehicle.prototype.show = function () {
   //push();
-  stroke(225);
-  strokeWeight(2);
+  stroke(this.color);
+  strokeWeight(7);
   //translate(this.pos.x, this.pos.y);
   //ambientMaterial(150);
   //sphere(6);
   //pop();
   point(this.pos.x, this.pos.y);
+
+  // stroke(225);
+  // strokeWeight(15);
+  // for(var i = this.prevPos.length-1; i >= 0; i-=96){
+  //   var p = this.prevPos[i];
+  //   // var n = this.prevPos[i-1];
+  //   //
+  //   // line(p.x, p.y, n.x, n.y);
+  //   //console.log(i + "   " + p.x + " " + p.y);
+  //   point(p.x,p.y);
+  // }
 };
 
 Vehicle.prototype.arrive = function (target) {
